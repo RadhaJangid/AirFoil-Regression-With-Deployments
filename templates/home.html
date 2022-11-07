@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>Airfoil Prediction API</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='CSS/main.css') }}">
+</head>
+
+<body>
+ <h1 style="color: rgb(198, 10, 10);">Airfoil Prediction</h1><br>
+
+     
+    <form action="{{ url_for('predict')}}"method="post">
+		<fieldset>
+			<div class="field-wrapper">
+			  <label>Frequency(Hz)</label>
+			  <input type="text" name="frequency" id="frequency" class="form-element" required="required">
+			  <label>Angle Of Attack(°)</label>
+			  <input type="text" name="angle" id="angle" class="form-element" required="required">
+			  <label>Chord Length(m)</label>
+			  <input type="text" name="length" id="length" class="form-element" required="required">
+			  <label>Free-Stream Velocity(m/s)</label>
+			  <input type="text" name="velocity" id="velocity" class="form-element" required="required">
+			  <label>Suction Side(m)</label>
+			  <input type="text" name="side" id="side" class="form-element" required="required">
+			</div>
+		</fieldset>
+		  <div class="right">
+			<button type="submit" align="center">Predict</button>
+		  </div>
+	 
+   </form>
+	<h1>New Test Data</h1>
+	<table>
+		<tr>
+			<th>Frequency(Hz)</th>
+			<th>Angle Of Attack(°)</th>
+			<th>Chord Length(m)</th>
+			<th>Free-Stream Velocity(m/s)</th>
+			<th>Suction Side(m)</th>
+		</tr>
+
+		<tr>
+			<td>{{frequency}}</td>
+			<td>{{angle_of_attack}}</td>
+			<td>{{chord_length}}</td>
+			<td>{{velocity}}</td>
+			<td>{{side}}</td>
+		</tr>
+	</table>
+	<br>
+	<h1>Predicted Result</h1>
+	<table>
+		<tr>
+			<th>Algorithm Name</th>
+			<th>Pressure level</th>
+		</tr>
+
+		<tr>
+			<td>Linear Regression</td>
+			<td>{{linear_prediction}}</td>
+		</tr>
+
+		<tr>
+			<td>Ridge Regression</td>
+			<td>{{ridge_prediction}}</td>
+		</tr>
+
+		<tr>
+			<td>Lasso Regression</td>
+			<td>{{lasso_prediction}}</td>
+		</tr>
+
+		<tr>
+			<td>SVR</td>
+			<td>{{svr_prediction}}</td>
+		</tr>
+		<tr>
+			<td>KNN</td>
+			<td>{{knn_prediction}}</td>
+		</tr>
+
+		<tr>
+			<td>Decision Tree Regressor</td>
+			<td>{{dt_prediction}}</td>
+		</tr>
+
+		<tr>
+			<td>Random Forest Regressor</td>
+			<td>{{random_prediction}}</td>
+		</tr>
+		
+		</table>
+		<br>
+		<h1 style="font-size: 18px; color: rgb(198, 10, 10);">The BEST Model is :  <span style="color: rgb(198, 10, 10);">{{best_model_name}}</span></h1>
+		<h1 style="font-size: 18px;">{{best_model_result}}</h1>
+		
+		
+		
+
+	
+	
+</body>
+</html>
